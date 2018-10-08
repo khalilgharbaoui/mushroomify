@@ -1,6 +1,6 @@
 class Mushroom < ApplicationRecord
   # edible=e, poisonous=p
-  enum eadible: { eadible: 0, poisnous: 1 }
+  enum eadible: { eadible: 0, poisonous: 1 }
   # bruises=t,no=f
   enum bruiser: { bruises: 0, no: 1 }
   # bell=b,conical=c,convex=x,flat=f,knobbed=k,sunken=s
