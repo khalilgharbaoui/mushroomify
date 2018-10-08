@@ -5,6 +5,11 @@ class MushroomsController < ApplicationController
   # GET /mushrooms.json
   def index
     @mushrooms = Mushroom.all
+    @mushrooms = @mushrooms.eadible(params[:eadible]) if params[:eadible].present?
+    @mushrooms = @mushrooms.cap_surface(params[:bruiser]) if params[:bruiser].present?
+    @mushrooms = @mushrooms.cap_shape(params[:cap_shape]) if params[:cap_shape].present?
+    @mushrooms = @mushrooms.cap_color(params[:cap_color]) if params[:cap_color].present?
+    @mushrooms = @mushrooms.cap_surface(params[:cap_surface]) if params[:cap_surface].present?
   end
 
   # GET /mushrooms/1
