@@ -1,5 +1,6 @@
 module MushroomsHelper
   def filter_attributes
-    Mushroom.attribute_names - %w[id identifier created_at updated_at]
+    MushroomAttributes::MUSHROOM_ATTRIBUTES
+    # Mushroom.attribute_names - %w[id identifier created_at updated_at]
   end
 end
