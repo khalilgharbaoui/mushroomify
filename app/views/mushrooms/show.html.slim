@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Identifier:
+  = @mushroom.identifier
+p
+  strong Eadible:
+  = @mushroom.eadible
+p
+  strong Cap shape:
+  = @mushroom.cap_shape
+p
+  strong Cap surface:
+  = @mushroom.cap_surface
+p
+  strong Cap color:
+  = @mushroom.cap_color
+p
+  strong Bruiser:
+  = @mushroom.bruiser
+
+=> link_to 'Edit', edit_mushroom_path(@mushroom)
+'|
+=< link_to 'Back', mushrooms_path

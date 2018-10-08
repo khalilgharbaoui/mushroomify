@@ -1,0 +1,27 @@
+= form_for @mushroom do |f|
+  - if @mushroom.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@mushroom.errors.count, "error")} prohibited this mushroom from being saved:"
+      ul
+        - @mushroom.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :identifier
+    = f.text_field :identifier
+  .field
+    = f.label :eadible
+    = f.number_field :eadible
+  .field
+    = f.label :cap_shape
+    = f.number_field :cap_shape
+  .field
+    = f.label :cap_surface
+    = f.number_field :cap_surface
+  .field
+    = f.label :cap_color
+    = f.number_field :cap_color
+  .field
+    = f.label :bruiser
+    = f.number_field :bruiser
+  .actions = f.submit
