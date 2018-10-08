@@ -1,4 +1,5 @@
 class Mushroom < ApplicationRecord
+  include Filterable
   # edible=e, poisonous=p
   enum eadible: { eadible: 0, poisonous: 1 }
   # bruises=t,no=f
@@ -11,9 +12,9 @@ class Mushroom < ApplicationRecord
   # fibrous=f,grooves=g,scaly=y,smooth=s
   enum cap_surface: { fibrous: 0, grooves: 1, scaly: 2, smooth: 3 }
 
-  scope :eadible, -> (eadible) { where eadible: eadible }
-  scope :cap_shape, -> (cap_shape) { where cap_shape: cap_shape }
-  scope :cap_color, -> (cap_color) { where cap_color: cap_color }
-  scope :cap_surface, -> (cap_surface) { where cap_surface: cap_surface }
-  scope :bruiser, -> (bruiser) { where bruiser: bruiser }
+  scope :eadible, ->(eadible) { where eadible: eadible }
+  scope :cap_shape, ->(cap_shape) { where cap_shape: cap_shape }
+  scope :cap_color, ->(cap_color) { where cap_color: cap_color }
+  scope :cap_surface, ->(cap_surface) { where cap_surface: cap_surface }
+  scope :bruiser, ->(bruiser) { where bruiser: bruiser }
 end
