@@ -1,5 +1,7 @@
 h1 Listing mushrooms
-
+= form_tag '/mushrooms', method: :get do
+ = select_tag :eadible, options_for_select(Mushroom.eadibles, params[:eadible]), include_blank: 'Eadible?'
+br
 table
   thead
     tr
