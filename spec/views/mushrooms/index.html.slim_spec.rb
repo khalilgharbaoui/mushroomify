@@ -5,7 +5,7 @@ RSpec.describe "mushrooms/index", type: :view do
     assign(:mushrooms, [
       Mushroom.create!(
         :identifier => "Identifier",
-        :eadible => 2,
+        :edible => 2,
         :cap_shape => 3,
         :cap_surface => 4,
         :cap_color => 5,
@@ -13,7 +13,7 @@ RSpec.describe "mushrooms/index", type: :view do
       ),
       Mushroom.create!(
         :identifier => "Identifier",
-        :eadible => 2,
+        :edible => 2,
         :cap_shape => 3,
         :cap_surface => 4,
         :cap_color => 5,

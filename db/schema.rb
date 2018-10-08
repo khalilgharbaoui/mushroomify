@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_064117) do
 
   create_table "mushrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "identifier"
-    t.integer "eadible"
+    t.integer "edible"
     t.integer "cap_shape"
     t.integer "cap_surface"
     t.integer "cap_color"

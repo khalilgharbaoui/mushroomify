@@ -4,7 +4,7 @@ RSpec.describe "mushrooms/edit", type: :view do
   before(:each) do
     @mushroom = assign(:mushroom, Mushroom.create!(
       :identifier => "MyString",
-      :eadible => 1,
+      :edible => 1,
       :cap_shape => 1,
       :cap_surface => 1,
       :cap_color => 1,
@@ -19,7 +19,7 @@ RSpec.describe "mushrooms/edit", type: :view do
 
       assert_select "input[name=?]", "mushroom[identifier]"
 
-      assert_select "input[name=?]", "mushroom[eadible]"
+      assert_select "input[name=?]", "mushroom[edible]"
 
       assert_select "input[name=?]", "mushroom[cap_shape]"
 

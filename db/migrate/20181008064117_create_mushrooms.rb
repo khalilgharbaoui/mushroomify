@@ -2,7 +2,7 @@ class CreateMushrooms < ActiveRecord::Migration[5.2]
   def change
     create_table :mushrooms do |t|
       t.string :identifier
-      t.integer :eadible
+      t.integer :edible
       t.integer :cap_shape
       t.integer :cap_surface
       t.integer :cap_color

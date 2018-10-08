@@ -1,7 +1,7 @@
 class Mushroom < ApplicationRecord
   include Filterable
   # edible=e, poisonous=p
-  enum eadible: { eadible: 0, poisonous: 1 }
+  enum edible: { edible: 0, poisonous: 1 }
   # bruises=t,no=f
   enum bruiser: { bruises: 0, no: 1 }
   # bell=b,conical=c,convex=x,flat=f,knobbed=k,sunken=s
