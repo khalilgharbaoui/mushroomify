@@ -6,6 +6,7 @@ h1 Listing mushrooms
  = select_tag :cap_shape, options_for_select(Mushroom.cap_shapes, params[:cap_shape]), include_blank: 'Cap shape'
  = select_tag :cap_surface, options_for_select(Mushroom.cap_surfaces, params[:cap_surface]), include_blank: 'Cap surface'
  = submit_tag '🍄'*3
+ = link_to "Reset", mushrooms_path
 br
 table
   thead
