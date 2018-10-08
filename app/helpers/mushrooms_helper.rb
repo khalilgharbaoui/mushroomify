@@ -1,5 +1,5 @@
 module MushroomsHelper
-  def filter_fields
-    Mushroom.attribute_names - ['id','identifier','created_at','updated_at']
+  def filter_attributes
+    Mushroom.attribute_names - %w[id identifier created_at updated_at]
   end
 end

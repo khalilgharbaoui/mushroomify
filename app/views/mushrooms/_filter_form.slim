@@ -1,6 +1,6 @@
 = form_tag '/mushrooms', method: :get do
- - filter_fields.each do |field|
-  = select_tag :"#{field}", options_for_select(Mushroom.send(:"#{field}s"),
-                  params[:"#{field}"]), include_blank: "#{field.humanize}?"
+ - filter_attributes.each do |field|
+  = select_tag :"#{field}", options_for_select(Mushroom.send("#{field}s"),
+                  params[field]), include_blank: "#{field.humanize}?"
  = submit_tag '🍄'*3
  = link_to "Reset", mushrooms_path
