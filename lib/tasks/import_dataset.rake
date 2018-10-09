@@ -34,10 +34,10 @@ namespace :dataset do
         stalk_color_above_ring: h.stalk_color_above_ring(l[14]),
         stalk_color_below_ring: h.stalk_color_below_ring(l[15]),
         veil_type: h.veil_type(l[16]),
-        veil_colore: h.veil_colore(l[17]),
+        veil_color: h.veil_color(l[17]),
         ring_number: h.ring_number(l[18]),
         ring_type: h.ring_type(l[19]),
-        spore_print_color: h.bruspore_print_colorises?(l[20]),
+        spore_print_color: h.spore_print_color(l[20]),
         population: h.population(l[21]),
         habitat: h.habitat(l[22])
       )

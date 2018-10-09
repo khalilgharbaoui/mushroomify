@@ -104,7 +104,7 @@ module ImportHelpers
     { partial: 'p', universal: 'u' }.key(arg).to_s
   end
 
-  def self.veil_colore(arg)
+  def self.veil_color(arg)
     { brown: 'n', orange: 'o', white: 'w', yellow: 'y' }.key(arg).to_s
   end
 
