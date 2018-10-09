@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: <%= Cre.dig(:db_password) %>
+  username: mushroomify
+  password: <%= Cre.dig(:db_password) %> # password: Mushroomify00#
   socket: /tmp/mysql.sock
 
 development:
@@ -52,3 +52,4 @@ production:
   database: mushroomify_production
   username: mushroomify
   password: <%= ENV['MUSHROOMIFY_DATABASE_PASSWORD'] %>
+
