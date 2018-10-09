@@ -13,7 +13,7 @@
   cap_surface = %w[fibrous grooves scaly smooth].sample
   cap_color = %w[brown buff cinnamon gray green pink purple red white yellow].sample
   bruiser = %w[bruises no].sample
-  oder = %w[almond anise creosote fishy foul musty none pungent spicy].sample
+  odor = %w[almond anise creosote fishy foul musty none pungent spicy].sample
   gill_attachment = %w[attached descending free notched].sample
   gill_spacing = %w[close crowded distant].sample
   gill_size = %w[broad narrow].sample
@@ -50,10 +50,10 @@
           stalk_color_above_ring: stalk_color_above_ring,
           stalk_color_below_ring: stalk_color_below_ring,
           veil_type: veil_type,
-          veil_colore: veil_colore,
+          veil_color: veil_color,
           ring_number: ring_number,
           ring_type: ring_type,
-          spore_print_color: bruspore_print_colorises?,
+          spore_print_color: spore_print_color,
           population: population,
           habitat: habitat
         )
