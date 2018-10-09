@@ -1,41 +1,7 @@
-namespace :dataset do
-  # Attribute Information:
-  #      0. edible: edible=e, poisonous=p)
-  #      1. cap-shape:                bell=b,conical=c,convex=x,flat=f,
-  #                                   knobbed=k,sunken=s
-  #      2. cap-surface:              fibrous=f,grooves=g,scaly=y,smooth=s
-  #      3. cap-color:                brown=n,buff=b,cinnamon=c,gray=g,green=r,
-  #                                   pink=p,purple=u,red=e,white=w,yellow=y
-  #      4. bruises?:                 bruises=t,no=f
-  #      5. odor:                     almond=a,anise=l,creosote=c,fishy=y,foul=f,
-  #                                   musty=m,none=n,pungent=p,spicy=s
-  #      6. gill-attachment:          attached=a,descending=d,free=f,notched=n
-  #      7. gill-spacing:             close=c,crowded=w,distant=d
-  #      8. gill-size:                broad=b,narrow=n
-  #      9. gill-color:               black=k,brown=n,buff=b,chocolate=h,gray=g,
-  #                                   green=r,orange=o,pink=p,purple=u,red=e,
-  #                                   white=w,yellow=y
-  #     10. stalk-shape:              enlarging=e,tapering=t
-  #     11. stalk-root:               bulbous=b,club=c,cup=u,equal=e,
-  #                                   rhizomorphs=z,rooted=r,missing=?
-  #     12. stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
-  #     13. stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
-  #     14. stalk-color-above-ring:   brown=n,buff=b,cinnamon=c,gray=g,orange=o,
-  #                                   pink=p,red=e,white=w,yellow=y
-  #     15. stalk-color-below-ring:   brown=n,buff=b,cinnamon=c,gray=g,orange=o,
-  #                                   pink=p,red=e,white=w,yellow=y
-  #     16. veil-type:                partial=p,universal=u
-  #     17. veil-color:               brown=n,orange=o,white=w,yellow=y
-  #     18. ring-number:              none=n,one=o,two=t
-  #     19. ring-type:                cobwebby=c,evanescent=e,flaring=f,large=l,
-  #                                   none=n,pendant=p,sheathing=s,zone=z
-  #     20. spore-print-color:        black=k,brown=n,buff=b,chocolate=h,green=r,
-  #                                   orange=o,purple=u,white=w,yellow=y
-  #     21. population:               abundant=a,clustered=c,numerous=n,
-  #                                   scattered=s,several=v,solitary=y
-  #     22. habitat:                  grasses=g,leaves=l,meadows=m,paths=p,
-  #                                   urban=u,waste=w,woods=d
+require 'task_helpers/import_helpers'
+h = ImportHelpers
 
+namespace :dataset do
   desc 'Import and process the mushrooms dataset'
   task import: :environment do
     warn 'Reading the dataset...'
@@ -46,8 +12,37 @@ namespace :dataset do
 
     warn 'Spliting up the dataset into lines...'
     doc.xpath('/html/body/p/text()').to_s.split("\n").each_with_index do |line, i|
-      warn "Processeing line ##{i+1}..."
-      puts line.split(',').join
+      warn "Processeing line ##{i + 1}..."
+      l = line.split(',')
+      warn "Saving mushroom ##{i + 1}..."
+      Mushroom.create!(
+        identifier: "#{i}##{l.join.upcase}",
+        edible: h.edible(l[0]),
+        cap_shape: h.cap_shape(l[1]),
+        cap_color: h.cap_color(l[2]),
+        cap_surface: h.cap_surface(l[3]),
+        bruiser: h.bruises?(l[4]),
+        odor: h.odor(l[5]),
+        gill_attachment: h.gill_attachment(l[6]),
+        gill_spacing: h.gill_spacing(l[7]),
+        gill_size: h.gill_size(l[8]),
+        gill_color: h.gill_color(l[9]),
+        stalk_shape: h.stalk_shape(l[10]),
+        stalk_root: h.stalk_root(l[11]),
+        stalk_surface_above_ring: h.stalk_surface_above_ring(l[12]),
+        stalk_surface_below_ring: h.stalk_surface_below_ring(l[13]),
+        stalk_color_above_ring: h.stalk_color_above_ring(l[14]),
+        stalk_color_below_ring: h.stalk_color_below_ring(l[15]),
+        veil_type: h.veil_type(l[16]),
+        veil_colore: h.veil_colore(l[17]),
+        ring_number: h.ring_number(l[18]),
+        ring_type: h.ring_type(l[19]),
+        spore_print_color: h.bruspore_print_colorises?(l[20]),
+        population: h.population(l[21]),
+        habitat: h.habitat(l[22])
+      )
+      warn "🍄 Mushroom ##{i + 1} saved!..."
     end
+    warn '✅ IMPORTED ALL MUSHROOMS!'
   end
 end
