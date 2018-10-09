@@ -1,15 +1,27 @@
 class Mushroom < ApplicationRecord
   include Filterable
-  # edible=e, poisonous=p
-  enum edible: { edible: 0, poisonous: 1 }
-  # bruises=t,no=f
-  enum bruiser: { bruises: 0, no: 1 }
-  # bell=b,conical=c,convex=x,flat=f,knobbed=k,sunken=s
-  enum cap_shape: { bell: 0, conical: 1, convex: 2, flat: 3, knobbed: 4, sunken: 5 }
-  # brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,white=w,yellow=y
-  enum cap_color: { brown: 0, buff: 1, cinnamon: 2, gray: 3, green: 4, pink: 5, purple: 6,
-                    red: 7, white: 8, yellow: 9 }
-  # fibrous=f,grooves=g,scaly=y,smooth=s
-  enum cap_surface: { fibrous: 0, grooves: 1, scaly: 2, smooth: 3 }
+  enum edible: %w[edible poisonous]
+  enum cap_shape: %w[bell conical convex flat knobbed sunken]
+  enum cap_surface: %w[fibrous grooves scaly smooth]
+  enum cap_color: %w[brown buff cinnamon gray green pink purple red white yellow]
+  enum bruiser: %w[bruises no]
+  enum oder: %w[almond anise creosote fishy foul musty none pungent spicy]
+  enum gill_attachment: %w[attached descending free notched]
+  enum gill_spacing: %w[close crowded distant]
+  enum gill_size: %w[broad narrow]
+  enum gill_color: %w[black brown buff chocolate gray  green orange pink purple red white yellow]
+  enum stalk_shape: %w[enlarging tapering]
+  enum stalk_root: %w[bulbous club cup equal rhizomorphs rooted missing]
+  enum stalk_surface_above_ring: %w[fibrous scaly silky smooth]
+  enum stalk_surface_below_ring: %w[fibrous scaly silky smooth]
+  enum stalk_color_above_ring: %w[brown buff cinnamon gray orange pink red white yellow]
+  enum stalk_color_below_ring: %w[brown buff cinnamon gray orange pink red white yellow]
+  enum veil_type: %w[partial universal]
+  enum veil_color: %w[brown orange white yellow]
+  enum ring_number: %w[none one two]
+  enum ring_type: %w[cobwebby evanescent flaring large none pendant sheathing zone]
+  enum spore_print_color: %w[black brown buff chocolate green orange purple white yellow]
+  enum population: %w[abundant clustered numerous scattered several solitary]
+  enum habitat: %w[grasses leaves meadows paths urban waste woods]
   include AttributesScopeble
 end
