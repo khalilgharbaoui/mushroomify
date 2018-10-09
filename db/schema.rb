@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2018_10_08_064117) do
 
-  create_table "mushrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "mushrooms", force: :cascade do |t|
     t.string "identifier"
     t.integer "edible"
     t.integer "cap_shape"
