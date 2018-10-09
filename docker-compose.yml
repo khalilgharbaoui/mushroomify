@@ -1,0 +1,21 @@
+# docker-compose.yml
+
+version: '3'
+services:
+  db:
+    image: postgres:alpine
+    volumes:
+      - "~/web/mushroomify/data/:/var/lib/postgresql/data"
+    # We're mounting this folder so we can backup/restore database dumps from our app folder.
+  web:
+    image: kaygeee/mushroomify:latest
+    command:   ["puma", "-e", "production"]
+    ports:
+      # HOST:CONTAINER
+      - "5000:5000"
+    environment:
+      - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
+      - DOCKENV=true
+      - RAILS_ENV=production
+    depends_on:
+      - db
