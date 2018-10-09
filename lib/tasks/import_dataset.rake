@@ -1,26 +1,24 @@
 require 'task_helpers/import_helpers'
+DATASET_URL = 'https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data'.freeze
+
 h = ImportHelpers
 
 namespace :dataset do
   desc 'Import and process the mushrooms dataset'
   task import: :environment do
     warn 'Reading the dataset...'
-    DATASET_URL =
-      'https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data'.freeze
-
     doc = Nokogiri::HTML(open(DATASET_URL))
-
     warn 'Spliting up the dataset into lines...'
-    doc.xpath('/html/body/p/text()').to_s.split("\n").each_with_index do |line, i|
+    dataset = doc.xpath('/html/body/p/text()').to_s
+    dataset.split("\n").each_with_index do |line, i|
       warn "Processeing line ##{i + 1}..."
       l = line.split(',')
-      warn "Saving mushroom ##{i + 1}..."
-      Mushroom.create!(
-        identifier: "#{i}##{l.join.upcase}",
+      attributes = {
+        identifier: "#{i}##{l.join}",
         edible: h.edible(l[0]),
         cap_shape: h.cap_shape(l[1]),
-        cap_color: h.cap_color(l[2]),
-        cap_surface: h.cap_surface(l[3]),
+        cap_surface: h.cap_surface(l[2]),
+        cap_color: h.cap_color(l[3]),
         bruiser: h.bruises?(l[4]),
         odor: h.odor(l[5]),
         gill_attachment: h.gill_attachment(l[6]),
@@ -40,7 +38,9 @@ namespace :dataset do
         spore_print_color: h.spore_print_color(l[20]),
         population: h.population(l[21]),
         habitat: h.habitat(l[22])
-      )
+      }
+      warn "Saving mushroom ##{i + 1}..."
+      Mushroom.create!(attributes)
       warn "🍄 Mushroom ##{i + 1} saved!..."
     end
     warn '✅ IMPORTED ALL MUSHROOMS!'
