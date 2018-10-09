@@ -5,7 +5,7 @@ class MushroomsController < ApplicationController
   # GET /mushrooms
   # GET /mushrooms.json
   def index
-    @mushrooms = Mushroom.filter(filter_attributes, params)
+    @mushrooms = Mushroom.filter(filter_attributes, params).paginate(:page => params[:page], :per_page => 100)
   end
 
   # GET /mushrooms/1
@@ -70,6 +70,6 @@ class MushroomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mushroom_params
-      params.require(:mushroom).permit(:identifier, :edible, :cap_shape, :cap_surface, :cap_color, :bruiser)
+      params.require(:mushroom).permit(:identifier, filter_attributes)
     end
 end

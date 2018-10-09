@@ -1,32 +1,26 @@
 h1 Listing mushrooms
 == render 'filter_form'
 br
+= will_paginate @mushrooms
+br
 table
   thead
     tr
       th Identifier
-      th Eadible
-      th Cap shape
-      th Cap surface
-      th Cap color
-      th Bruiser
-      th
-      th
-      th
-
+      - filter_attributes.each do |a|
+        th = a.humanize
+      / th
+      / th
+      / th
   tbody
     - @mushrooms.each do |mushroom|
       tr
-        td = mushroom.identifier
-        td = mushroom.edible
-        td = mushroom.cap_shape
-        td = mushroom.cap_surface
-        td = mushroom.cap_color
-        td = mushroom.bruiser
-        td = link_to 'Show', mushroom
-        td = link_to 'Edit', edit_mushroom_path(mushroom)
-        td = link_to 'Destroy', mushroom, data: { confirm: 'Are you sure?' }, method: :delete
-
+        td = mushroom.identifier.truncate(11)
+        - filter_attributes.each do |a|
+          td = mushroom.send(a)
+        / td = link_to 'Show', mushroom
+        / td = link_to 'Edit', edit_mushroom_path(mushroom)
+        / td = link_to 'Destroy', mushroom, data: { confirm: 'Are you sure?' }, method: :delete
 br
 
-= link_to 'New Mushroom', new_mushroom_path
+/ = link_to 'New Mushroom', new_mushroom_path
