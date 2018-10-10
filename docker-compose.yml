@@ -19,5 +19,6 @@ services:
       - POSTGRES_USER=$POSTGRES_USER
       - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
       - DOCKENV=true
+      - DATABASE_URL=$DATABASE_URL
     depends_on:
       - db

@@ -69,11 +69,4 @@ test:
 #
 production:
   <<: *default
-  url: <%=
-    if ENV['DOCKENV'] && ENV['HEROKU']
-      (ENV['DATABASE_URL'] || Cre.dig(:database_url))
-    elsif ENV['DOCKENV']
-      "postgres://postgres:docker@db:5432/mushroomify_production"
-    else
-      'postgres://postgres@localhost:5432/mushroomify_production'
-    end %>
+  url: <%= ENV['DATABASE_URL'] %>
