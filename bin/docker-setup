@@ -46,6 +46,8 @@ chdir APP_ROOT do
               docker rm mushroomify_web_run_2 && \
               docker rm mushroomify_web_run_3 && \
               docker rm mushroomify_web_run_4 && \
+              sleep 2 && \
+              docker rm mushroomify_db_run_1 && \
               sleep 3
               echo "ℹ️  Booting now..."
               sleep 4
