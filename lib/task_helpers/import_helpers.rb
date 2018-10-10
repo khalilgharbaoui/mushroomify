@@ -36,95 +36,74 @@
 #                                   urban=u,waste=w,woods=d
 
 module ImportHelpers
-  def self.edible(arg)
-    { edible: 'e', poisonous: 'p' }.key(arg).to_s
-  end
+  DATASET = {
+    edible:
+    { edible: 'e', poisonous: 'p' },
 
-  def self.cap_shape(arg)
-    { bell: 'b', conical: 'c', convex: 'x', flat: 'f', knobbed: 'k', sunken: 's' }.key(arg).to_s
-  end
+    cap_shape:
+    { bell: 'b', conical: 'c', convex: 'x', flat: 'f', knobbed: 'k', sunken: 's' },
 
-  def self.cap_surface(arg)
-    { fibrous: 'f', grooves: 'g', scaly: 'y', smooth: 's' }.key(arg).to_s
-  end
+    cap_surface:
+    { fibrous: 'f', grooves: 'g', scaly: 'y', smooth: 's' },
 
-  def self.cap_color(arg)
-    { brown: 'n', buff: 'b', cinnamon: 'c', gray: 'g', green: 'r', pink: 'p', purple: 'u', red: 'e', white: 'w', yellow: 'y' }.key(arg).to_s
-  end
+    cap_color:
+    { brown: 'n', buff: 'b', cinnamon: 'c', gray: 'g', green: 'r', pink: 'p', purple: 'u', red: 'e', white: 'w', yellow: 'y' },
 
-  def self.bruises?(arg)
-    { bruises: 't', no: 'f' }.key(arg).to_s
-  end
+    bruises?:
+    { bruises: 't', no: 'f' },
 
-  def self.odor(arg)
-    { almond: 'a', anise: 'l', creosote: 'c', fishy: 'y', foul: 'f', musty: 'm', none: 'n', pungent: 'p', spicy: 's' }.key(arg).to_s
-  end
+    odor:
+    { almond: 'a', anise: 'l', creosote: 'c', fishy: 'y', foul: 'f', musty: 'm', none: 'n', pungent: 'p', spicy: 's' },
 
-  def self.gill_attachment(arg)
-    { attached: 'a', descending: 'd', free: 'f', notched: 'n' }.key(arg).to_s
-  end
+    gill_attachment:
+    { attached: 'a', descing: 'd', free: 'f', notched: 'n' },
 
-  def self.gill_spacing(arg)
-    { close: 'c', crowded: 'w', distant: 'd' }.key(arg).to_s
-  end
+    gill_spacing:
+    { close: 'c', crowded: 'w', distant: 'd' },
 
-  def self.gill_size(arg)
-    { broad: 'b', narrow: 'n' }.key(arg).to_s
-  end
+    gill_size:
+    { broad: 'b', narrow: 'n' },
 
-  def self.gill_color(arg)
-    { black: 'k', brown: 'n', buff: 'b', chocolate: 'h', gray: 'g', green: 'r', orange: 'o', pink: 'p', purple: 'u', red: 'e', white: 'w', yellow: 'y' }.key(arg).to_s
-  end
+    gill_color:
+    { black: 'k', brown: 'n', buff: 'b', chocolate: 'h', gray: 'g', green: 'r', orange: 'o', pink: 'p', purple: 'u', red: 'e', white: 'w', yellow: 'y' },
 
-  def self.stalk_shape(arg)
-    { enlarging: 'e', tapering: 't' }.key(arg).to_s
-  end
+    stalk_shape:
+    { enlarging: 'e', tapering: 't' },
 
-  def self.stalk_root(arg)
-    { bulbous: 'b', club: 'c', cup: 'u', equal: 'e', rhizomorphs: 'z', rooted: 'r', missing: '?' }.key(arg).to_s
-  end
+    stalk_root:
+    { bulbous: 'b', club: 'c', cup: 'u', equal: 'e', rhizomorphs: 'z', rooted: 'r', missing: '?' },
 
-  def self.stalk_surface_above_ring(arg)
-    { fibrous: 'f', scaly: 'y', silky: 'k', smooth: 's' }.key(arg).to_s
-  end
+    stalk_surface_above_ring:
+    { fibrous: 'f', scaly: 'y', silky: 'k', smooth: 's' },
 
-  def self.stalk_surface_below_ring(arg)
-    { fibrous: 'f', scaly: 'y', silky: 'k', smooth: 's' }.key(arg).to_s
-  end
+    stalk_surface_below_ring:
+    { fibrous: 'f', scaly: 'y', silky: 'k', smooth: 's' },
 
-  def self.stalk_color_above_ring(arg)
-    { brown: 'n', buff: 'b', cinnamon: 'c', gray: 'g', orange: 'o', pink: 'p', red: 'e', white: 'w', yellow: 'y' }.key(arg).to_s
-  end
+    stalk_color_above_ring:
+    { brown: 'n', buff: 'b', cinnamon: 'c', gray: 'g', orange: 'o', pink: 'p', red: 'e', white: 'w', yellow: 'y' },
 
-  def self.stalk_color_below_ring(arg)
-    { brown: 'n', buff: 'b', cinnamon: 'c', gray: 'g', orange: 'o', pink: 'p', red: 'e', white: 'w', yellow: 'y' }.key(arg).to_s
-  end
+    stalk_color_below_ring:
+    { brown: 'n', buff: 'b', cinnamon: 'c', gray: 'g', orange: 'o', pink: 'p', red: 'e', white: 'w', yellow: 'y' },
 
-  def self.veil_type(arg)
-    { partial: 'p', universal: 'u' }.key(arg).to_s
-  end
+    veil_type:
+    { partial: 'p', universal: 'u' },
 
-  def self.veil_color(arg)
-    { brown: 'n', orange: 'o', white: 'w', yellow: 'y' }.key(arg).to_s
-  end
+    veil_color:
+    { brown: 'n', orange: 'o', white: 'w', yellow: 'y' },
 
-  def self.ring_number(arg)
-    { none: 'n', one: 'o', two: 't' }.key(arg).to_s
-  end
+    ring_number:
+    { none: 'n', one: 'o', two: 't' },
 
-  def self.ring_type(arg)
-    { cobwebby: 'c', evanescent: 'e', flaring: 'f', large: 'l', none: 'n', pendant: 'p', sheathing: 's', zone: 'z' }.key(arg).to_s
-  end
+    ring_type:
+    { cobwebby: 'c', evanescent: 'e', flaring: 'f', large: 'l', none: 'n', pendant: 'p', sheathing: 's', zone: 'z' },
 
-  def self.spore_print_color(arg)
-    { black: 'k', brown: 'n', buff: 'b', chocolate: 'h', green: 'r', orange: 'o', purple: 'u', white: 'w', yellow: 'y' }.key(arg).to_s
-  end
+    spore_print_color:
+    { black: 'k', brown: 'n', buff: 'b', chocolate: 'h', green: 'r', orange: 'o', purple: 'u', white: 'w', yellow: 'y' },
 
-  def self.population(arg)
-    { abundant: 'a', clustered: 'c', numerous: 'n', scattered: 's', several: 'v', solitary: 'y' }.key(arg).to_s
-  end
+    population:
+    { abundant: 'a', clustered: 'c', numerous: 'n', scattered: 's', several: 'v', solitary: 'y' },
 
-  def self.habitat(arg)
-    { grasses: 'g', leaves: 'l', meadows: 'm', paths: 'p', urban: 'u', waste: 'w', woods: 'd' }.key(arg).to_s
-  end
+    habitat:
+    { grasses: 'g', leaves: 'l', meadows: 'm', paths: 'p', urban: 'u', waste: 'w', woods: 'd' }
+  }.freeze
 end
