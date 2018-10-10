@@ -23,22 +23,29 @@ chdir APP_ROOT do
               # commands
               docker-compose up --no-start
               sleep 5
-              docker-compose run web sleep 3 && \
+              docker-compose run web sleep 1 && \
+              echo "ℹ️  Running bundle intall..." && \
+              docker-compose run web bundle install --jobs 8 && \
+              sleep 3 && \
               echo "ℹ️  Waiting for postgres to boot..." && \
               sleep 3 && \
-              rake db:drop db:create db:migrate DISABLE_DATABASE_ENVIRONMENT_CHECK=1 RAILS_ENV=production && \
+              echo "ℹ️  rake db:create db:migrate..." && \
+              docker-compose run web bundle exec rake db:create db:migrate && \
               sleep 2
               echo "ℹ️  Ignore the errors! if any!" && \
               sleep 1 && \
               echo "ℹ️  Ready to import mushrooms now!" && \
-              sleep 3 && \
-              rake dataset:import && \
-              sleep 1
+              echo "ℹ️  This takes about 30sec" && \
+              sleep 4 && \
+              docker-compose run web rake dataset:import && \
               sleep 4
-              echo "ℹ️  Removing one-off container..."
-              sleep 5
-              docker rm mushroomify_web_run_1
-              sleep 4
+              echo "ℹ️  Removing one-off containers..."
+              sleep 3
+              docker rm mushroomify_web_run_1 && \
+              docker rm mushroomify_web_run_2 && \
+              docker rm mushroomify_web_run_3 && \
+              docker rm mushroomify_web_run_4 && \
+              sleep 3
               echo "ℹ️  Booting now..."
               sleep 4
               docker-compose up
