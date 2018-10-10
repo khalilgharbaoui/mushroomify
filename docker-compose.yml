@@ -15,7 +15,9 @@ services:
       - "5000:5000"
     environment:
       - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
-      - DOCKENV=true
       - RAILS_ENV=production
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - DOCKENV=true
     depends_on:
       - db
