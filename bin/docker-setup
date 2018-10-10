@@ -24,6 +24,7 @@ chdir APP_ROOT do
               docker-compose up --no-start
               sleep 5
               docker-compose run web sleep 1 && \
+              docker-compose run db sleep 1 && \
               echo "ℹ️  Running bundle intall..." && \
               docker-compose run web bundle install --jobs 8 && \
               sleep 3 && \
